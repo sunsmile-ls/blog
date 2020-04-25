@@ -245,8 +245,8 @@ module.exports = {
 2. **使用 DllReferencePlugin 引用 manifest.json**
 
 ```
-new PurgecssPlugin({
-	paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
+new webpack.DllReferencePlugin({
+	manifest: require("./manifest.json"),
 })
 ```
 
@@ -323,7 +323,7 @@ resolve: {
 
 ## 无用的 CSS 如何删除掉？
 
-- PurifyCSS: 遍历代码，识别已经用到的 CSS class
+- PurifyCSS: 遍历代码，识别已经用到的 CSS class [已经暂停维护]
 - uncss: HTML 需要通过 jsdom 加载，所有的样式通过 PostCSS 解析，通过 document.querySelector 来识别在 html 文件里面不存在的选择器
 
 > 在 webpack 中如何使用 PurifyCSS?

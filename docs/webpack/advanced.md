@@ -380,7 +380,7 @@ module.exports = {
 
 **没⽤到的⽅法会在 uglify 阶段被擦除掉**
 
-**使⽤**：webpack 默认⽀持，在 .babelrc ⾥设置 modules: false 即可
+**使⽤**：webpack 默认⽀持，mode 为 production 默认支持，需要把 mode:none 不支持
 
 **要求**：必须是 ES6 的语法，CJS 的⽅式不⽀持
 

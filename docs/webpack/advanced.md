@@ -322,9 +322,10 @@ module.exports = {
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
+        // 只有满足上面的条件才会进入下面的判断
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10 // 数字越大，优先级越高
         }
       }
     }

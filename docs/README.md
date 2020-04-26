@@ -5,3 +5,5 @@
 ## 技术栈目录
 
 [webpack](./webpack/advanced.md)
+
+[typescript](/typescript/basetype)

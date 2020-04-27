@@ -64,11 +64,11 @@ class router {
     console.log(hashStr)
     if (hashStr) {
       if (hashStr == 'luyou1') {
-        document.querySelector('#luyouid').innerHTML = '好好学习天天向上'
+        document.querySelector('#luyouid').innerHTML = 'luyou1'
       } else if (hashStr == 'luyou2') {
-        document.querySelector('#luyouid').innerHTML = '天天向上好好学习'
+        document.querySelector('#luyouid').innerHTML = 'luyou2'
       } else {
-        document.querySelector('#luyouid').innerHTML = '学习向上'
+        document.querySelector('#luyouid').innerHTML = 'default'
       }
     }
   }
@@ -112,10 +112,10 @@ history.pushState = _wr('pushState')
 history.replaceState = _wr('replaceState')
 //实现监听
 window.addEventListener('replaceState', function(e) {
-  console.log('THEY DID IT AGAIN! replaceState 111111')
+  console.log('THEY DID IT AGAIN! replaceState')
 })
 window.addEventListener('pushState', function(e) {
-  console.log('THEY DID IT AGAIN! pushState 2222222')
+  console.log('THEY DID IT AGAIN! pushState')
 })
 ```
 

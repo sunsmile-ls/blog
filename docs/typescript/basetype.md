@@ -4,7 +4,7 @@
 
 语法： (变量/函数):type
 
-```js
+```typescript
 // 原始类型
 let bool: boolean = true
 let num: number = 123 // TypeScript 还支持 ECMAScript 2015中引入的二进制和八进制字面量。
@@ -20,7 +20,7 @@ let compute: (x: number, y: number) => number
 compute = (a, b) => a + b
 
 // 对象
-let obj: { x: number, y: number } = { x: 1, y: 2 }
+let obj: { x: number; y: number } = { x: 1, y: 2 }
 //如果obj后面为Object,则不能用obj.x去访问属性
 obj.x = 3
 
@@ -49,7 +49,7 @@ let endless = () => {
 
 元组类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。 比如，你可以定义一对值分别为 `string` 和 `number` 类型的元组。
 
-```js
+```typescript
 let x: [string, number]
 x = ['hello', 10] // OK
 x = [10, 'hello'] // Error
@@ -57,14 +57,14 @@ x = [10, 'hello'] // Error
 
 当访问一个已知索引的元素，会得到正确的类型：
 
-```js
+```typescript
 console.log(x[0].substr(1)) // OK
 console.log(x[1].substr(1)) // Error, 'number' 不存在 'substr' 方法
 ```
 
 当访问一个越界的元素，会使用联合类型替代：
 
-```js
+```typescript
 x[3] = 'world' // OK, 字符串可以赋值给(string | number)类型
 
 console.log(x[5].toString()) // OK, 'string' 和 'number' 都有 toString

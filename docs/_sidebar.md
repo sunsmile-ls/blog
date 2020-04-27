@@ -1,16 +1,21 @@
+- interview
+
+  - [router](/interview/router)
+
 - webpack
 
-  - [进阶](/webpack/advanced.md)
-  - [webpack 构建速度和体积优化](/webpack/speedUp.md)
-  - [编写可维护的 webpack 配置](/webpack/webpack-config.md)
-  - [打包优化](/webpack/optimization.md)
-  - [服务端渲染](/webpack/serverrender.md)
-  - [大整数加法组件库的编写](/webpack/basicLibrary.md)
-  - [loader 编写](/webpack/code-loader.md)
-  - [编写⼀个 Plugin](/webpack/code-plugin.md)
-  - [webpack 打包原理分析](/webpack/principle.md)
+  - [进阶](/webpack/advanced)
+  - [webpack 构建速度和体积优化](/webpack/speedUp)
+  - [编写可维护的 webpack 配置](/webpack/webpack-config)
+  - [打包优化](/webpack/optimization)
+  - [服务端渲染](/webpack/serverrender)
+  - [大整数加法组件库的编写](/webpack/basicLibrary)
+  - [loader 编写](/webpack/code-loader)
+  - [编写⼀个 Plugin](/webpack/code-plugin)
+  - [webpack 打包原理分析](/webpack/principle)
 
 - typescript
+
   - [基础类型](/typescript/basetype)
   - [enum](/typescript/enum)
   - [function](/typescript/function)

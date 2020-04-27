@@ -1,61 +1,61 @@
-#### 查看是否有ts声明文件
+#### 查看是否有 ts 声明文件
 
 https://microsoft.github.io/TypeSearch/
 
 为社区贡献声明文件的方法
 
-* https://definitelytyped.org
+- https://definitelytyped.org
 
 #### 编写声明文件
 
-* global
+- global
 
-```js
+```typescript
 // global-lib.js
 // 全局的js文件
 function globalLib(options) {
-    console.log(options);
+  console.log(options)
 }
-globalLib.version = '1.0.0';
+globalLib.version = '1.0.0'
 
 globalLib.doSomething = function() {
-    console.log('globalLib do something');
-};
+  console.log('globalLib do something')
+}
 ```
 
 声明文件
 
 ```typescript
 // global-lib.d.ts
-declare function globalLib(options: globalLib.Options): void;
+declare function globalLib(options: globalLib.Options): void
 
 declare namespace globalLib {
-    const version: string;
-    function doSomething(): void;
-    interface Options {
-        [key: string]: any
-    }
+  const version: string
+  function doSomething(): void
+  interface Options {
+    [key: string]: any
+  }
 }
 ```
 
-* cmd
+- cmd
 
-```js
+```typescript
 // module-lib.js
-const version = '1.0.0';
+const version = '1.0.0'
 
 function doSomething() {
-    console.log('moduleLib do something');
+  console.log('moduleLib do something')
 }
 
 function moduleLib(options) {
-    console.log(options);
+  console.log(options)
 }
 
-moduleLib.version = version;
-moduleLib.doSomething = doSomething;
+moduleLib.version = version
+moduleLib.doSomething = doSomething
 
-module.exports = moduleLib;
+module.exports = moduleLib
 ```
 
 声明文件
@@ -64,45 +64,46 @@ module.exports = moduleLib;
 // module-lib.d.ts
 declare function moduleLib(options: Options): void
 
-interface Options { // 本身是一个模块，所以不会向外暴露
-    [key: string]: any
+interface Options {
+  // 本身是一个模块，所以不会向外暴露
+  [key: string]: any
 }
 
 declare namespace moduleLib {
-    const version: string
-    function doSomething(): void
+  const version: string
+  function doSomething(): void
 }
 
 export = moduleLib //兼容写法
 ```
 
-* umd
+- umd
 
-```js
-(function (root, factory) {
-    if (typeof define === "function" && define.amd) {
-        define(factory);
-    } else if (typeof module === "object" && module.exports) {
-        module.exports = factory();
-    } else {
-        root.umdLib = factory();
+```typescript
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(factory)
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory()
+  } else {
+    root.umdLib = factory()
+  }
+})(this, function() {
+  return {
+    version: '1.0.0',
+    doSomething() {
+      console.log('umdLib do something')
     }
-}(this, function() {
-    return {
-        version: '1.0.0',
-        doSomething() {
-            console.log('umdLib do something');
-        }
-    }
-}));
+  }
+})
 ```
 
 声明文件的编写
 
 ```typescript
 declare namespace umdLib {
-    const version: string
-    function doSomething(): void
+  const version: string
+  function doSomething(): void
 }
 
 export as namespace umdLib //如果为umd类库，必须写这一条
@@ -114,20 +115,17 @@ export = umdLib
 
 ```typescript
 // 模块插件
-import m from 'moment';
+import m from 'moment'
 declare module 'moment' {
-    export function myFunction(): void;
+  export function myFunction(): void
 }
 m.myFunction = () => {}
 
 // 全局插件
 declare global {
-    namespace globalLib {
-        function doAnyting(): void
-    }
+  namespace globalLib {
+    function doAnyting(): void
+  }
 }
 globalLib.doAnyting = () => {}
 ```
-
-
-

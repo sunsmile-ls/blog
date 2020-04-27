@@ -1,6 +1,6 @@
 ## ts 类型推断
 
-```javascript
+```typescript
 // 根据右边的值类型推断出左边变量的类型
 let a = 1
 let b = [1, null, 'a']
@@ -28,16 +28,16 @@ X 兼容 Y： X(目标类型)=Y（源类型）
 
 - 接口的兼容性
 
-```javascript
+```typescript
 // 接口兼容性  成员少的可以兼容成员多的
 interface X {
-  a: any;
-  b: any;
+  a: any
+  b: any
 }
 interface Y {
-  a: any;
-  b: any;
-  c: any;
+  a: any
+  b: any
+  c: any
 }
 let x: X = { a: 1, b: 2 }
 let y: Y = { a: 1, b: 2, c: 3 }
@@ -47,7 +47,7 @@ x = y
 
 - 函数兼容
 
-```javascript
+```typescript
 // 函数兼容性
 type Handler = (a: number, b: number) => void
 function hof(handler: Handler) {
@@ -88,7 +88,7 @@ interface Point2D {
 let p3d = (point: Point3D) => {}
 let p2d = (point: Point2D) => {}
 p3d = p2d //把对象中的数据看成是单独的参数
-// p2d = p23 //成员少的兼容于成员多的
+// p2d = p3d //成员少的兼容于成员多的
 
 // 3) 返回值类型 成员少的兼容于成员多的
 let f = () => ({ name: 'Alice' })
@@ -108,7 +108,7 @@ function overload(a: any, b: any): any {}
 
 - 枚举类型
 
-```javascript
+```typescript
 // 枚举兼容性
 enum Fruit {
   Apple,
@@ -152,7 +152,7 @@ cc = aa
 
 - 泛型兼容
 
-```javascript
+```typescript
 // 泛型兼容性
 interface Empty<T> {
   // value: T

@@ -1,6 +1,6 @@
 #### interface and class
 
-```javascript
+```typescript
 // 接口只能约束类的共有成员
 // 接口不能约束类的构造函数
 interface Human {
@@ -22,13 +22,13 @@ class Asian implements Human {
 
 - interface 可以继承 interface，并且可以继承多个接口
 
-```javascript
+```typescript
 interface Man extends Human {
-  run(): void;
+  run(): void
 }
 
 interface Child {
-  cry(): void;
+  cry(): void
 }
 
 interface Boy extends Man, Child {}
@@ -36,7 +36,7 @@ interface Boy extends Man, Child {}
 
 - interface 可以继承 class
 
-```javascript
+```typescript
 class Auto {
   // 相当于类只有类的成员结构，没有类的实现
   state = 1

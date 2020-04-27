@@ -118,3 +118,7 @@ window.addEventListener('pushState', function(e) {
   console.log('THEY DID IT AGAIN! pushState 2222222')
 })
 ```
+
+参考：
+
+[如何监听 URL 的变化](https://juejin.im/post/5c2708cd6fb9a049f06a5744)

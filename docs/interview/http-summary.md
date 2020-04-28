@@ -74,7 +74,7 @@ HTTP/1.1 通过引入 **Chunk transfer** 机制来解决这个问题，服务器
 
 解决：**一个域名只使用一个 TCP 长连接和消除队头阻塞问题。**
 
-<img src="/interview/images/86cdf01a3af7f4f755d28917e58aae6a.png" style="zoom:50%;" />
+![多路复用](./images/86cdf01a3af7f4f755d28917e58aae6a.png)
 
 - 首先，浏览器准备好请求数据，包括了请求行、请求头等信息，如果是 POST 方法，那么还要有请求体。
 - 这些数据经过二进制分帧层处理之后，会被转换为一个个带有请求 ID 编号的帧，通过协议栈将这些帧发送给服务器。服务器接收到所有帧之后，会将所有相同 ID 的帧合并为一条完整的请求信息。
@@ -124,7 +124,7 @@ HTTP/2 提供了请求优先级，可以在发送请求时，标上该请求的�
 
 ### QUIC 协议
 
-<img src="interview/images/0bae470bb49747b9a59f9f4bb496a9c6.png" style="zoom:50" />
+![QUIC 协议](./images/0bae470bb49747b9a59f9f4bb496a9c6.png)
 
 - 实现了类似 TCP 的流量控制、传输可靠性的功能。
 

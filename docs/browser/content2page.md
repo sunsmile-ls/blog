@@ -11,6 +11,7 @@
 - **浏览器无法直接理解和使用 HTML，所以需要将 HTML 转换为浏览器能够理解的结构——DOM 树。**
 
 DOM 树的构建过程
+
 ![dom树的构建过程](./images/125849ec56a3ea98d4b476c66c754f79.png)
 
 在 chrome 控制台中可以通过 `document` 查看 dom 树

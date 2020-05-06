@@ -124,7 +124,7 @@ HTTP/2 提供了请求优先级，可以在发送请求时，标上该请求的�
 
 ### QUIC 协议
 
-![QUIC 协议](./images/0bae470bb49747b9a59f9f4bb496a9c6.png)
+![QUIC 协议npm](./images/0bae470bb49747b9a59f9f4bb496a9c6.png)
 
 - 实现了类似 TCP 的流量控制、传输可靠性的功能。
 

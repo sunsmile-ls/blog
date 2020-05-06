@@ -4,8 +4,10 @@
 
 ## 技术栈目录
 
-[interview](/interview/router)
+[interview](/interview/)
 
-[webpack](/webpack/advanced)
+[browser](/browser/)
 
-[typescript](/typescript/basetype)
+[webpack](/webpack/)
+
+[typescript](/typescript/)

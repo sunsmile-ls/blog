@@ -1,5 +1,7 @@
 - [**interview**](/interview/)
 
+- [**browser**](/browser/)
+
 - webpack
 
   - [进阶](/webpack/advanced)

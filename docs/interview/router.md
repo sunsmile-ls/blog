@@ -43,7 +43,7 @@
 <div id="luyouid"></div>
 ```
 
-```js
+```javascript
 //ts逻辑
 class router {
   //存贮当前路由
@@ -95,7 +95,7 @@ window.addEventListener('popstate', function(event) {})
 
 我们可以创建 2 个全新的事件，事件名为 pushState 和 replaceState，我们就可以在全局监听
 
-```js
+```javascript
 //创建全局事件
 var _wr = function(type) {
   var orig = history[type]

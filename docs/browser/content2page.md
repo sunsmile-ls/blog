@@ -118,7 +118,7 @@ CSS 的 transform 来实现动画效果
 
 ![合成](./images/024bf6c83b8146d267f476555d953a2c.png)
 
-- **重绘和回流和 Eventloop 的关系**
+- **重绘和重排和 Eventloop 的关系**
 
 1. 当 Eventloop 执行完 Microtasks 后，会判断 `document` 是否需要更新，因为浏览器是 60Hz 的刷新率，每 16.6ms 才会更新一次。
 2. 然后判断是否有 `resize` 或者 `scroll` 事件，有的话会去触发事件，所以 `resize` 和 `scroll` 事件也是至少 16ms 才会触发一次，并且自带节流功能。
@@ -132,22 +132,22 @@ CSS 的 transform 来实现动画效果
 
 ## 减少重绘和重排的方法
 
-- 使用 `translate` 替代 `top`
-- 使用 `visibility` 替换 `display: none` ，因为前者只会引起重绘，后者会引发回流（改变了布局）
+- 使用 `translate` 替代 位移（`right`、`left` 等）
+- 使用 `visibility` 替换 `display: none` ，因为前者只会引起重绘，后者会引发重排（改变了布局）
 - 把 `DOM` 离线后修改，比如：先把 `DOM` 给 `display:none`(有一次 `Reflow`)，然后你修改`100`次，然后再把它显示出来
 - 不要把 `DOM`结点的属性值放在一个循环里当成循环里的变量
 
 ```js
 for (let i = 0; i < 1000; i++) {
-  // 获取 offsetTop 会导致回流，因为需要去获取正确的值
-  console.log(document.querySelector('.test').style.offsetTop)
+  // 获取 height 会导致重排，因为需要去获取正确的值
+  console.log(document.querySelector('.test').style.height)
 }
 ```
 
-- 使用 css 动画代替 js 动画
-- 不要使用 `table` 布局，可能很小的一个小改动会造成整个 `table` 的重新布局 动画实现的速度的选择，动画速度越快，回流次数越多，也可以选择使用 `requestAnimationFrame`
+- 使用 `css` 动画代替 `js` 动画
+- 不要使用 `table` 布局，可能很小的一个小改动会造成整个 `table` 的重新布局 动画实现的速度的选择，动画速度越快，重排次数越多，也可以选择使用 `requestAnimationFrame`
 - `CSS`选择符从右往左匹配查找，避免 `DOM` 深度过深
-- 将频繁运行的动画变为图层，图层能够阻止该节点回流影响别的元素。比如对于 `video` 标签，浏览器会自动将该节点变为图层。
+- 将频繁运行的动画变为图层，图层能够阻止该节点重排影响别的元素。比如对于 `video` 标签，浏览器会自动将该节点变为图层。
 
 **设置节点为图层的方式有很多，我们可以通过以下几个常用属性可以生成新图层**
 

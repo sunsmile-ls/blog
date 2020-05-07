@@ -67,8 +67,11 @@ constructor (options = {}) {
     this._mutations = Object.create(null)
     // 存放 getter
     this._wrappedGetters = Object.create(null)
+    // 收集 module
     this._modules = new ModuleCollection(options)
+    // 根据 nameSpace 存放 module
     this._modulesNamespaceMap = Object.create(null)
+    // 存放订阅者
     this._subscribers = []
     this._makeLocalGettersCache = Object.create(null)
 
@@ -84,6 +87,7 @@ constructor (options = {}) {
     }
 
     // strict mode
+    // 严格模式
     this.strict = strict
 
     const state = this._modules.root.state
@@ -96,7 +100,7 @@ constructor (options = {}) {
 
     // initialize the store state, which is responsible for the reactivity
     // (also registers _wrappedGetters as computed properties)
-    // 初始化存储状态，该状态负责反应性
+    // 初始化 store 的状态
     resetStoreState(this, state)
 
     // 应用 plugin 到 store 上面

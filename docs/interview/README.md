@@ -1,4 +1,4 @@
-- [面试常考函数的原理](./function-principle)
-- [继承](./extends)
-- [router](./router)
-- [从 http 的发展角度看协议](./http-summary)
+- [面试常考函数的原理](./function-principle.md)
+- [继承](./extends.md)
+- [router](./router.md)
+- [从 http 的发展角度看协议](./http-summary.md)

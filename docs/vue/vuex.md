@@ -2,6 +2,8 @@
 
 !> 本教程是根据 [vuex-4.0.0-beta.1](https://github.com/vuejs/vuex/tree/v4.0.0-beta.1)解读，并且会长期维护
 
+> 我分析的方法是明确入口，分析出口，然后确认出口的方法
+
 `vuex`借鉴了 `Flux`、`Redux` 。`Vuex` 是专门为 `Vue.js` 设计的状态管理库。
 
 ## 为什么要用 vuex?
@@ -22,12 +24,15 @@
 // store.js
 import { createStore } from 'vuex'
 
-const store = createStore({
-  state() {
-    return {
-      count: 1
-    }
-  }
+const debug = process.env.NODE_ENV !== 'production'
+
+export default createStore({
+  modules: {
+    cart,
+    products
+  },
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
 })
 ```
 
@@ -67,7 +72,7 @@ constructor (options = {}) {
     this._mutations = Object.create(null)
     // 存放 getter
     this._wrappedGetters = Object.create(null)
-    // 收集 module
+    // 收集 module [递归收集 子module 到_children 中]
     this._modules = new ModuleCollection(options)
     // 根据 nameSpace 存放 module
     this._modulesNamespaceMap = Object.create(null)
@@ -100,7 +105,7 @@ constructor (options = {}) {
 
     // initialize the store state, which is responsible for the reactivity
     // (also registers _wrappedGetters as computed properties)
-    // 初始化 store 的状态
+    // 初始化 store 的状态， 并且吧 _wrappedGetters 注册为计算属性
     resetStoreState(this, state)
 
     // 应用 plugin 到 store 上面
@@ -112,4 +117,73 @@ constructor (options = {}) {
       devtoolPlugin(this)
     }
   }
+```
+
+接下来我们来分析一下 `ModuleCollection`入参是上面的例子，子 module 会存放在`this.root._children`中，输出图为：
+![moduleCollection](./images/moduleCollection.png)
+
+## 分析 installModule
+
+上文提到了`installModule(this, state, [], this._modules.root)`，其含义为**初始化根 module，递归的注册所有的子 moudle,收集所有的 getters 到 \_wrappedGetters**。
+
+```javascript
+function installModule(store, rootState, path, module, hot) {
+  // 如果 path 是 [] 则为根根 module
+  const isRoot = !path.length
+  // 获取命名空间
+  const namespace = store._modules.getNamespace(path)
+
+  // register in namespace map
+  // 注册命名空间到 store._modulesNamespaceMap 中
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && __DEV__) {
+      console.error(
+        `[vuex] duplicate namespace ${namespace} for the namespaced module ${path.join(
+          '/'
+        )}`
+      )
+    }
+    store._modulesNamespaceMap[namespace] = module
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    const parentState = getNestedState(rootState, path.slice(0, -1))
+    const moduleName = path[path.length - 1]
+    store._withCommit(() => {
+      if (__DEV__) {
+        if (moduleName in parentState) {
+          console.warn(
+            `[vuex] state field "${moduleName}" was overridden by a module with the same name at "${path.join(
+              '.'
+            )}"`
+          )
+        }
+      }
+      parentState[moduleName] = module.state
+    })
+  }
+
+  const local = (module.context = makeLocalContext(store, namespace, path))
+
+  module.forEachMutation((mutation, key) => {
+    const namespacedType = namespace + key
+    registerMutation(store, namespacedType, mutation, local)
+  })
+
+  module.forEachAction((action, key) => {
+    const type = action.root ? key : namespace + key
+    const handler = action.handler || action
+    registerAction(store, type, handler, local)
+  })
+
+  module.forEachGetter((getter, key) => {
+    const namespacedType = namespace + key
+    registerGetter(store, namespacedType, getter, local)
+  })
+
+  module.forEachChild((child, key) => {
+    installModule(store, rootState, path.concat(key), child, hot)
+  })
+}
 ```

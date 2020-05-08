@@ -4,10 +4,10 @@
 
 ## 技术栈目录
 
-[interview](/interview/)
+[interview](./docs/interview/)
 
-[browser](/browser/)
+[browser](./docs/browser/)
 
-[webpack](/webpack/)
+[webpack](./docs/webpack/)
 
-[typescript](/typescript/)
+[typescript](./docs/typescript/)

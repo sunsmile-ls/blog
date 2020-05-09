@@ -4,6 +4,7 @@
 
 - [**webpack**](/webpack/)
 
-- [**vue**](/vue/vuex)
-
 - [**typescript**](/typescript/)
+
+- vue
+  - [vuex](/vue/vuex)

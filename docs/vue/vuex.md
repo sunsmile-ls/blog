@@ -505,7 +505,7 @@ function resetStore(store, hot) {
 
 resetStore 其实就是先将`_action`等 `store` 挂载的属性置空，然后再调用 installModule 和 resetStoreState 重新初始化 module 以及用 Vue 特性使其“响应式化”，跟构造函数中的是一致的。
 
-##
+## unregisterModule
 
 ```js
 unregisterModule(path) {

@@ -2,7 +2,9 @@
 
 - [**browser**](/browser/)
 
-- [**vue**](/vue/)
+- vue
+
+  - [vuex 源码](/vue/vuex)
 
 - [**webpack**](/webpack/)
 

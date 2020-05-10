@@ -2,6 +2,8 @@
 
 - [**browser**](/browser/)
 
+- [**vue**](/vue/)
+
 - [**webpack**](/webpack/)
 
 * typescript

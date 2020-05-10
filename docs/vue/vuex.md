@@ -151,37 +151,33 @@ function installModule(store, rootState, path, module, hot) {
     const parentState = getNestedState(rootState, path.slice(0, -1))
     const moduleName = path[path.length - 1]
     store._withCommit(() => {
-      if (__DEV__) {
-        if (moduleName in parentState) {
-          console.warn(
-            `[vuex] state field "${moduleName}" was overridden by a module with the same name at "${path.join(
-              '.'
-            )}"`
-          )
-        }
-      }
+      //
       parentState[moduleName] = module.state
     })
   }
 
   const local = (module.context = makeLocalContext(store, namespace, path))
 
+  // 注册 mutation
   module.forEachMutation((mutation, key) => {
     const namespacedType = namespace + key
     registerMutation(store, namespacedType, mutation, local)
   })
 
+  // 注册 action
   module.forEachAction((action, key) => {
     const type = action.root ? key : namespace + key
     const handler = action.handler || action
     registerAction(store, type, handler, local)
   })
 
+  // 注册Getter
   module.forEachGetter((getter, key) => {
     const namespacedType = namespace + key
     registerGetter(store, namespacedType, getter, local)
   })
 
+  // 递归注册 Module
   module.forEachChild((child, key) => {
     installModule(store, rootState, path.concat(key), child, hot)
   })

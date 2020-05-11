@@ -6,7 +6,7 @@
 
 - [**webpack**](/webpack/)
 
-* typescript
+- typescript
 
   - [基础类型](/typescript/basetype)
   - [enum](/typescript/enum)

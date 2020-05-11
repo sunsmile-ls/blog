@@ -6,4 +6,6 @@
 
 - [**webpack**](/webpack/)
 
+- [**vue**](/vue/vuex)
+
 - [**typescript**](/typescript/)

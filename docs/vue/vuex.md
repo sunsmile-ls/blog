@@ -481,7 +481,7 @@ _withCommit(fn) {
 
 ## resetStore
 
-```JS
+```javascript
 function resetStore(store, hot) {
   store._actions = Object.create(null)
   store._mutations = Object.create(null)

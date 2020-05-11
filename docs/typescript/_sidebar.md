@@ -2,11 +2,9 @@
 
 - [**browser**](/browser/)
 
-- [**vue**](/vue/)
+* [**webpack**](/webpack/)
 
-- [**webpack**](/webpack/)
-
-- typescript
+* typescript
 
   - [基础类型](/typescript/basetype)
   - [enum](/typescript/enum)
@@ -22,3 +20,5 @@
   - [模块化和命名空间](/typescript/modularityAndNamespace)
   - [声明文件](/typescript/declarationDoc)
   - [ts 配置文件](/typescript/tsconfig)
+
+- [**vue**](/vue/)

@@ -1,5 +1,24 @@
 # webpack 构建速度和体积优化策略
 
+## 目录
+
+- 速度和体积分析
+
+  - [使用 `speed-measure-webpack-plugin` 分析 loader 和 plugin 的执行速度](/webpack/speedUp?id=速度分析：使用-speed-measure-webpack-plugin)
+
+  - [使用 `webpack-bundle-analyzer` 分析体积](/webpack/speedUp?id=webpack-bundle-analyzer-分析体积)
+
+- 提高性能
+
+  - [使用高版本的 `nodejs` 和 `webpack`](/webpack/speedUp?id=使用高版本的-webpack-和-nodejs)
+  - [解析：`HappyPack`、 `thread-loader` 多进程/多实例对资源并行解析](/webpack/speedUp?id=多进程多实例构建：资源并行解析可选方案)
+  - [压缩：使用`parallel-uglify-plugin`或者`uglifyjs-webpack-plugin`、`terser-webpack-plugin` 设置 parallel 进行多进程/多实例并行压缩](/webpack/speedUp?id=多进程多实例：并行压缩)
+  - [分包：使用 DLLPlugin 进行分包生成 manifest.json，DllReferencePlugin 对 manifest.json 引用](/webpack/speedUp?id=进一步分包：预编译资源模块)
+  - [缓存：使用 `babel-loader`、`terser-webpack-plugin`、`cache-loader` 或者 `hard-source-webpack-plugin` 加快二次构架速度](/webpack/speedUp?id=进一步分包：预编译资源模块)
+  - [缩小构建目标](/webpack/speedUp?id=缩小构建目标)
+  - [减少文件搜索范围](/webpack/speedUp?id=缩小构建目标)
+  - [`purgecss-webpack-plugin` 和 `mini-css-extract-plugin` 配合使用删除无用的 CSS ](/webpack/speedUp?id=无用的-css-如何删除掉？)
+
 ## 使用 webpack 内置的 stats
 
 - stats: 构建的统计信息

@@ -313,23 +313,38 @@ chunks 参数说明：
 module.exports = {
   optimization: {
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000, // 公共包最小的大小，[单位是字节]
-      maxSize: 0, // 公共包最大的大小，[单位是字节]
-      minChunks: 1, // 最小的引用次数
-      maxAsyncRequests: 5, // 同时请求js/css的数量
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
-      cacheGroups: {
-        // 只有满足上面的条件才会进入下面的判断
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10 // 数字越大，优先级越高
+        chunks: 'async',//对同步，异步，所有的模块有效【默认为异步】
+        minSize: 30000,//当模块大于30kb
+        maxSize: 0,//如果大于这个数，对模块进行二次分割时使用，不推荐使用,
+        minChunks: 1,//打包生成的chunk文件最少有几个chunk引用了这个模块
+        maxAsyncRequests: 5,//模块请求5次
+        maxInitialRequests: 3,//入口文件同步请求3次
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: { //当文件符合上面的条件，就会进入这个判断
+            vendors: {
+                //文件在node_modules中，则创建文件名为vendors
+                test: /[\\/]node_modules[\\/]/,
+                priority: -10//优先级 数字越大，优先级越高
+            },
+            default: {
+                minChunks: 2,
+                priority: -20,
+                reuseExistingChunk: true
+            }
         }
-      }
     }
-  }
+}
+```
+
+- webpack 官方推荐的编码方式
+
+```js
+optimization:{
+    //帮我们自动做代码分割
+    splitChunks:{
+        chunks:"async",//默认是支持异步
+    }
 }
 ```
 
@@ -355,9 +370,9 @@ module.exports = {
 
 - 分离⻚⾯公共⽂件
 
-minChunks: 设置最⼩引⽤次数为 2 次
+`minChunks`: 设置最⼩引⽤次数为 2 次
 
-minuSize: 分离的包体积的⼤⼩
+`minSize`: 分离的包体积的⼤⼩
 
 ```js
 module.exports = {
@@ -380,6 +395,7 @@ module.exports = {
 ## tree shaking(摇树优化)
 
 **没⽤到的⽅法会在 uglify 阶段被擦除掉**
+作用：去除没用的代码
 
 **使⽤**：webpack 默认⽀持，mode 为 production 默认支持，需要把 mode:none 不支持
 
@@ -394,6 +410,20 @@ module.exports = {
   代码执⾏的结果不会被⽤到
 
 - 代码擦除： uglify 阶段删除⽆⽤代码
+
+webpack2.x 开始支持 tree shaking 概念，顾名思义，"摇树"，**只支持 ES module 的引入方式**
+
+```json
+optimization: {
+	usedExports: true
+}
+```
+
+```
+//package.json
+"sideEffects":false
+// 正常对所有模块进行tree shaking 或者 "sideEffects":['*.css','@babel/polyfill']
+```
 
 ## scope hoisting 原理
 
@@ -561,63 +591,6 @@ npm install --save @babel/runtime
 ```
 
 babel-transform-runtime，不会造成全局污染，因此也会不会对类似 Array.prototype.includes() 进行 polyfill。
-
-## tree Shaking
-
-作用：去除没用的代码
-
-webpack2.x 开始支持 tree shaking 概念，顾名思义，"摇树"，**只支持 ES module 的引入方式**
-
-```json
-optimization: {
-	usedExports: true
-}
-```
-
-```
-//package.json
-"sideEffects":false
-// 正常对所有模块进行tree shaking 或者 "sideEffects":['*.css','@babel/polyfill']
-```
-
-## 代码分割 code Splitting
-
-```json
-optimization: {
-    splitChunks: {
-        chunks: 'async',//对同步，异步，所有的模块有效【默认为异步】
-        minSize: 30000,//当模块大于30kb
-        maxSize: 0,//如果大于这个数，对模块进行二次分割时使用，不推荐使用,
-        minChunks: 1,//打包生成的chunk文件最少有几个chunk引用了这个模块
-        maxAsyncRequests: 5,//模块请求5次
-        maxInitialRequests: 3,//入口文件同步请求3次
-        automaticNameDelimiter: '~',
-        name: true,
-        cacheGroups: { //当文件符合上面的条件，就会进入这个判断
-            vendors: {
-                //文件在node_modules中，则创建文件名为vendors
-                test: /[\\/]node_modules[\\/]/,
-                priority: -10//优先级 数字越大，优先级越高
-            },
-            default: {
-                minChunks: 2,
-                priority: -20,
-                reuseExistingChunk: true
-            }
-        }
-    }
-```
-
-## webpack 官方推荐的编码方式
-
-```js
-optimization:{
-    //帮我们自动做代码分割
-    splitChunks:{
-        chunks:"async",//默认是支持异步
-    }
-}
-```
 
 ​ 异步加载文件
 

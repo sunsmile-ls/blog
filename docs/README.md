@@ -8,10 +8,8 @@
 
 [browser](/browser/)
 
-[vue](/vue/)
-
 [webpack](/webpack/)
 
 [typescript](/typescript/)
 
-[vue](/vue/vuex)
+[vue](/vue/)

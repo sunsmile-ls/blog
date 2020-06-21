@@ -10,4 +10,6 @@
 
 - [**react**](/react/)
 
+- [**react component**](/react-component/)
+
 - [**graphql**](/graphql/)

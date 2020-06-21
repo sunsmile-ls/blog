@@ -6,8 +6,10 @@
 
 - [**typescript**](/typescript/)
 
-- vue
-  - [vuex](/vue/vuex)
-- [**react**](/react/)
+- [**vuex**](/vue)
+
+- react
+
+  - [**react-router**](/react/react-router)
 
 - [**graphql**](/graphql/)

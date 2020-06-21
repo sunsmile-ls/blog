@@ -11,3 +11,7 @@
 - [**typescript**](/typescript/)
 
 - [**vue**](/vue/)
+
+- [**react**](/react/)
+
+- [**graphql**](/graphql/)

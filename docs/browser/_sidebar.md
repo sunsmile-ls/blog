@@ -14,4 +14,6 @@
 
 - [**react**](/react/)
 
+- [**可视化**](/visualize/)
+
 - [**graphql**](/graphql/)

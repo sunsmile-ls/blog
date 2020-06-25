@@ -10,6 +10,8 @@
 
 - [**react**](/react/)
 
+- [**可视化**](/visualize/)
+
 - graphql
 
   - [**初始化项目**](/graphql/init-project)

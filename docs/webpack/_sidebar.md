@@ -17,5 +17,9 @@
 - [**typescript**](/typescript/)
 
 - [**vue**](/vue/)
+
 - [**react**](/react/)
+
+- [**可视化**](/visualize/)
+
 - [**graphql**](/graphql/)

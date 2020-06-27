@@ -12,10 +12,7 @@
 
 - [**jest**](/jest/)
 
-- react component
-
-  - [**环境的搭建**](/react-component/index)
-  - [**Button**](/react-component/button)
+- [**react component**](/react-component/)
 
 - [**可视化**](/visualize/)
 

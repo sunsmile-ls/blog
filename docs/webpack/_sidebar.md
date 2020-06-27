@@ -20,6 +20,10 @@
 
 - [**react**](/react/)
 
+- [**react component**](/react-component/)
+
+- [**jest**](/jest/)
+
 - [**可视化**](/visualize/)
 
 - [**graphql**](/graphql/)

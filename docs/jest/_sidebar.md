@@ -10,10 +10,13 @@
 
 - [**react**](/react)
 
-- [**jest**](/jest/)
+- jest
 
-- [**react component**](/react-component/)
+  - [**测试原理**](/jest/index)
+  - [**jest 基础**](/jest/jest-base)
 
-- [**可视化**](/visualize/)
+* [**react component**](/react-component/)
 
-- [**graphql**](/graphql/)
+* [**可视化**](/visualize/)
+
+* [**graphql**](/graphql/)

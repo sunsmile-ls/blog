@@ -92,3 +92,115 @@ test('test fetch 返回结果为 404', () => {
   })
 })
 ```
+
+3. 通过 resolve 和 reject 测试 【下面两个 `return` 可以变为 `await` 】
+
+```javascript
+test('test fetch 返回结果为 { success: true}', () => {
+  // 取数据并且拿到所有数据， 判断 是不是有 检查对象
+  return expect(fetchData()).resolves.toMatchObject({
+    data: {
+      success: true,
+    },
+  })
+})
+
+test('test fetch 返回结果为 404', () => {
+  // 取数据并且拿到所有数据， 判断是不是抛错
+  return expect(fetchData()).rejects.toThrow()
+})
+```
+
+4. 通过 async 和 await 测试
+
+```javascript
+test('test fetch 返回结果为 { success: true}', async () => {
+  const res = await fetchData()
+  return expect(res.data).toEqual({
+    success: true,
+  })
+})
+
+test('test fetch 返回结果为 404', async () => {
+  expect.assertions(1)
+  try {
+    await fetchData()
+  } catch (e) {
+    expect(e.toString()).toEqual('Error: Request failed width status code 404')
+  }
+})
+```
+
+## jest 中的钩子函数
+
+1. `beforeAll(()=>{})` 在所有的测试执行之前执行
+2. `afterAll(()=>{})` 在所有的测试执行之后执行
+3. `beforeEach(()=>{})` 在每个测试执行之前执行
+4. `afterEach(()=>{})` 在每个测试执行之后执行
+
+> 全局的钩子函数 对 describe 任然有效， 全局的 before 执行的早， 全局的 after 执行的较后
+
+`test.only` 表示只执行此测试用例，其他的都会忽略
+
+!> 代码不要直接放到 describe 中， 需要放到上面的 `before...`、`after...`, 防止有坑
+
+## jest 中的 mock
+
+```javascript
+test('测试 test', () => {
+  const func = jest.fn()
+  expect(func).toBeCalled()
+})
+```
+
+`func.mock` 有以下几个返回值
+
+- `calls` 值为 `[['sunsmile']]` 表示被调用了几次,以及每次传入的值为什么
+
+```javascript
+expect(func.mock.calls[0]).toEqual(['sunsmile']) // 表示第一次调用的参数是 abc
+expect(func).toBeCalledWith('abc') // 表示每次调用的参数是 abc
+```
+
+- `instances` 表示 this 的指向
+- `invocationCallorder` 值为 `[1,2,3,4]`， 表示 mock 函数的调用顺序
+- `results` 返回值为 `[{type:'return',value: 'sunsmile'}]`， 表示方法的返回值
+
+```javascript
+// 可以通过此方法设置返回值
+func.mockReturnValueOnce('sunsmile').mockReturnValueOnce('daniel')
+// 上面这句还可以写成
+func.mockImplementationOnce(() => {
+  return 'sunsmile'
+})
+
+func.mockImplementation(() => {
+  return this
+})
+// 上面这个方法等价于下面的
+func.mockReturnThis()
+```
+
+> mock 函数的作用
+
+1. 捕获函数的调用和返回结果， this 和 调用顺序
+2. 可以自由的设置返回结果
+3. 改变函数的内部实现
+
+```javascript
+// a.js
+export const getData = () => {
+  return axios.get('/api').then((res) => res.data)
+}
+
+// a.test.js
+import axios from 'axios'
+jest.mock('axios')
+test.only('测试 getData', async () => {
+  axios.get.mockResolvedValue({ data: 'hello' })
+  // axios.get.mockResolvedValueOnce({ data: 'hello' }) // 表示只返回一次值
+  await getData().then((data) => {
+    expect(data).toBe('hello')
+  })
+})
+```

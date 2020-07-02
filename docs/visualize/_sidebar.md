@@ -17,5 +17,6 @@
 - 可视化
 
   - [**课前总结**](/visualize/index)
+  - [**Canvas**](/visualize/canvas)
 
 - [**graphql**](/graphql/)

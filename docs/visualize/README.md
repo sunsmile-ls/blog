@@ -1,1 +1,2 @@
 - [课前总结](/visualize/index)
+- [Canvas](/visualize/canvas)

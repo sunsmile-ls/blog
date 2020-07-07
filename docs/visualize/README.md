@@ -1,2 +1,4 @@
 - [课前总结](/visualize/index)
 - [Canvas](/visualize/canvas)
+- [SVG](/visualize/svg)
+- [WebGL](/visualize/webGL)

@@ -204,3 +204,118 @@ test.only('测试 getData', async () => {
   })
 })
 ```
+
+- 创建 mock 文件
+
+```javascript
+// demo.js
+export const fetchData = () => {
+  return axios.get('/api').then((res) => res.data)
+}
+
+// __mocks__/demo.js
+// 表示用 mocks 下面的demo.js 会替换 demo.js
+export const fetchData = () => {
+  return new Promise((resolved, reject) => {
+    resolved(123)
+  })
+}
+// demo.test.js
+
+// 告诉 jest 模拟 demo
+jest.mock('./demo') // 可以用 jest.config.js 文件中 automock 设置为 ture 代替
+
+// jest.unmock("./demo") // 取消 demo 的模拟
+// 引入的是 __mocks__ 目录下面的 demo.js 文件
+import { fetchData } from './demo.js'
+
+test('fetchData test', () => {
+  return fetchData().then((data) => {
+    expect(data).toEqual(123)
+  })
+})
+
+// 测试 demo 中的同步代码
+const { syncFunc } = jest.requireActual('demo')
+```
+
+- 测试 timer
+
+```javascript
+// timer.js
+export default (callback) => {
+  setTimeout(() => {
+    callback()
+  })
+}
+
+// timer.test.js
+import timer from './timer'
+jest.useFakeTimers() //模拟 timer ，不需要等待特别长的时间
+test('timer test', () => {
+  const fn = jest.fn()
+  timer(fn)
+  // jest.runAllTimers() // 表示运行所有 timer
+  // jest.runOnlyPendingTimers() // 表示只运行 pending 的 timer
+  jest.advanceTimersByTime(3000) // 表示时间快进三秒
+  expect(fn).toHaveBeenCalledTimers(1) // 表示timer 被调用了一次
+})
+```
+
+## snapshot
+
+使用 snapshot 生成快照
+
+```javascript
+// config.js
+export const generateConfig = () => {
+  return {
+    server: 'http://localhost',
+    port: 8000,
+    time: new Date(),
+  }
+}
+
+// config.test.js
+import { generateConfig } from './config'
+
+test('test generateConfig 函数', () => {
+  // 第一次会生成快照，后面如果改变文件，生成新的快照，需要确认
+  // 如果确认修改 按 u
+  // 如果多个文件冲突， 需要按 i 进行 单个文件的确认， 如果确认修改则  按 u
+  expect(generateConfig()).toMatchSnapshot({
+    time: expect.any(Date), // 加入此行的意思是不需要和上一次的快照相等
+  })
+})
+```
+
+- 行内的 snapshot
+
+1. 安装
+
+```shell
+npm i prettier@1.18.2 --save
+```
+
+2. 运行
+
+```javascript
+test('test generateConfig 函数', () => {
+  expect(generateConfig()).toMatchInlineSnapshot() //生成的文件会放到 行内
+})
+```
+
+## ES6 进行测试
+
+jest.mock 发现文件声明式一个类， 会自动把类的构造函数和方法变成 jest.fn()
+
+```javascript
+class Utils {
+  a(){
+
+  },
+}
+// 会变为 const Util = jest.fn()  Util.a = jest.fn()
+```
+
+> jest 在 node 环境中自己模拟了一套 dom 的 api, 所以可以通过 document.getElementById() 获取元素

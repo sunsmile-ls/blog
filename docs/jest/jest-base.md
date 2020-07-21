@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: lis100
+ * @Date: 2020-07-02 16:32:07
+ * @LastEditors: lis100
+ * @LastEditTime: 2020-07-17 17:20:45
+--> 
 - 初始化配置文件
 
 ```cmd
@@ -15,7 +22,7 @@ npx jest --coverage
 需要安装 babel
 
 ```cmd
-npm i @babel/core@7.4.5 @babel/preset-env@7.4.5 -D
+npm i @babel/core @babel/preset-env -D
 ```
 
 创建`.babelrc`
@@ -66,7 +73,7 @@ test('test fetch 返回结果为 { success: true}', (done) => {
 })
 ```
 
-2. 返回 promise
+1. 返回 promise
 
 ```javascript
 import axios from 'axios'

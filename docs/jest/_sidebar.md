@@ -17,8 +17,6 @@
   - [**vue 相关测试**](/jest/vue-test)
   - [**react 相关测试**](/jest/react-test)
 
-* [**react component**](/react-component/)
-
 * [**可视化**](/visualize/)
 
 * [**graphql**](/graphql/)

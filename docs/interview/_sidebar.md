@@ -17,8 +17,6 @@
 
 - [**jest**](/jest/)
 
-- [**react component**](/react-component/)
-
 - [**可视化**](/visualize/)
 
 - [**graphql**](/graphql/)

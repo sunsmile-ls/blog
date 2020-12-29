@@ -527,6 +527,9 @@ if (module.hot) {
   module.hot.accept('文件地址', function() {
     // 文件更新之后相应的处理
   })
+  module.hot.dispose(function() { 
+    // 文件删除之后的操作
+  });
 }
 ```
 

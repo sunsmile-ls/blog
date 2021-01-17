@@ -1,21 +1,30 @@
-# javascript 技术栈
 
-> sunsmile 个人笔记
+> 本文档是作者在从事`fontend developer`以来的总结，旨在为同行提供一份详细的前端进阶的教程。侧重于`react`和`工程化`
+所涉及的内容，如果觉得本文档对你有帮助，请给予支持！
 
-## 技术栈目录
+### 如何支持
 
-[interview](/interview/)
+* 关注公众号 [`Sunsmile`](/README?id=联系我)
+* 点击右上角 star 给予关注
+* 分享给您身边更多的小伙伴
 
-[browser](/browser/)
+### 联系我  <!-- {docsify-ignore} -->
+* 加入群聊 
 
-[webpack](/webpack/)
+本群的宗旨是给大家提供一个良好的技术学习交流平台，所以杜绝一切广告！由于微信群人满 100 之后无法加入，请扫描下方二维码先添加作者 “Sunsmile” 微信，备注："加群"。
 
-[typescript](/typescript/)
+<img src="./_media/sunsmile.jpg" alt="sunsmile 微信" height="180px" width="180px">
 
-[vue](/vue/)
+* 公众号 
 
-[react](/react/)
+专注于`javascript`相关技术栈的研究分享，包括`react`、`vite`、`面试`等，如果大家感兴趣可以给予关注支持！
 
-[可视化](/visualize/)
+### 转载分享 <!-- {docsify-ignore} -->
 
-[graphql](/graphql/)
+建立本开源项目的初衷是基于个人学习和相关技术栈的总结记录，也希望能帮助一些在学习的过程中遇到问题的小伙伴，如果您需要转载本仓库的一些文章到自己的博客，请按照以下格式注明出处，谢谢合作。
+
+```
+作者：Sunsmile
+链接：https://sunsmile-ls.github.io/blog/#/
+来源：javascript 技术栈
+```

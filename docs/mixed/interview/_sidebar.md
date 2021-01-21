@@ -1,4 +1,4 @@
-- interview
+### interview
 
   - [面试常考函数的原理](/mixed/interview/function-principle)
   - [继承](/mixed/interview/extends)

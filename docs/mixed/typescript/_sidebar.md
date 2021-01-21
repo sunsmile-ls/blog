@@ -1,5 +1,4 @@
-
-- typescript
+### typescript
 
   - [基础类型](/mixed/typescript/basetype)
   - [enum](/mixed/typescript/enum)

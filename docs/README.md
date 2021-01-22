@@ -1,4 +1,3 @@
-
 > 本文档是作者在从事`fontend developer`以来的总结，旨在为同行提供一份详细的前端进阶的教程。侧重于`react`和`工程化`
 所涉及的内容，如果觉得本文档对你有帮助，请给予支持！
 
@@ -18,6 +17,8 @@
 * 公众号 
 
 专注于`javascript`相关技术栈的研究分享，包括`react`、`vite`、`面试`等，如果大家感兴趣可以给予关注支持！
+
+<img src="./_media/sunsmile_avator.jpg" alt="sunsmile 微信" height="180px" width="180px">
 
 ### 转载分享 <!-- {docsify-ignore} -->
 

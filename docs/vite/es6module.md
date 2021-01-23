@@ -75,4 +75,10 @@ import vue from 'vue/dist/ems.js'
 
 ![](./../_media/async.png)
 
-从上面的图片可以看出，添加了 `async` 关键字以后并不意味着浏览器在解析到这个脚本文件时就会执行，而是会等到这段脚本所依赖的所有module加载完毕后再执行。
+可以看出，添加了 `async` 关键字以后并不意味着浏览器在解析到这个脚本文件时就会执行，而是在这段脚本所依赖的所有module加载完毕后再执行。
+
+4. 一个module只会加载一次
+
+如果当前页面路径为 `https://www.sunsmile.com/a/b/c.html`，则文件中的`/module.js`、`../../module.js`与`https://www.sunsmile.com/module.js`都会被认为是同一个`module`。
+
+`module1.js`与`module1.js?a=1`就被认定为`两个 module`

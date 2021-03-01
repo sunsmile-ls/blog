@@ -2,8 +2,9 @@
 
 * [vite](/vite/README.md)
 
-* 大杂烩
+* [react](/react/README.md)
 
+* 大杂烩
 	* [webpack](/mixed/webpack/README.md)
 	* [typescript](/mixed/typescript/README.md)
 	* [面试](/mixed/interview/README.md)

@@ -219,4 +219,6 @@ function render(element, container) {
 ```
 到这儿，我们已经实现了`render`函数。
 
+了解更多请看 [github render](https://github.com/sunsmile-ls/sunsmileReact/tree/0.0.2)
+
 未完待续......

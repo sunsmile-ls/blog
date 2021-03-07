@@ -8,9 +8,9 @@
 * 分享给您身边更多的小伙伴
 
 ### 联系我  <!-- {docsify-ignore} -->
-* 加入群聊 
+* 添加作者
 
-本群的宗旨是给大家提供一个良好的技术学习交流平台，所以杜绝一切广告！请扫描下方二维码先添加作者 “Sunsmile” 微信，备注："加群"。
+请扫描下方二维码先添加作者 “Sunsmile” 微信，一起交流一起成长。
 
 <img src="./_media/sunsmile.jpg" alt="sunsmile 微信" height="180px" width="180px">
 

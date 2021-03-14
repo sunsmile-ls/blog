@@ -201,6 +201,8 @@ function commitWork(fiber) {
 ```
 至此，我们`Render 和 Commit 阶段`已经完成。
 
+> 源码请看 https://github.com/sunsmile-ls/sunsmileReact/tree/0.0.4
+
 未完待续...... 防止走失，请关注作者。
 
 

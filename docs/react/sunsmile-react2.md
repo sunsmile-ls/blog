@@ -9,8 +9,8 @@
 1. [`createElement`](/react/sunsmile-react1#_1createelement)
 2. [`render`](/react/sunsmile-react1#_2render)
 3. [`Concurrent Mode`](/react/sunsmile-react2)
-4. Fibers
-5. Render 和 Commit 阶段
+4. [`Fibers`](/react/sunsmile-react3?id=fibers)
+5. [`Render 和 Commit 阶段`](/react/sunsmile-react3?id=render-和-commit-阶段)
 6. Reconciliation
 7. Function Components
 8. Hooks

@@ -1,0 +1,2 @@
+- [选择排序](/algo/selection)
+- [插入排序](/algo/insert)

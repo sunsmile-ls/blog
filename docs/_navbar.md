@@ -1,6 +1,6 @@
 * [关注作者](/README.md)
 
-* [vite](/vite/README.md)
+* [算法](/algo/README.md)
 
 * [react](/react/README.md)
 

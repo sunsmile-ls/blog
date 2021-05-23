@@ -1,2 +1,3 @@
 - [动手实现 React (一)](/react/sunsmile-react1)
 - [动手实现 React (二)](/react/sunsmile-react2)
+- [动手实现 React (三)](/react/sunsmile-react3)

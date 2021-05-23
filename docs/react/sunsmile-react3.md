@@ -138,7 +138,7 @@ function performUnitOfWork(fiber) {
 ```
 > 阶段代码：https://github.com/sunsmile-ls/sunsmileReact/tree/0.0.3
 
-### Render 和 Commit 阶段
+## Render 和 Commit 阶段
 
 我们在之前的`Concurrent Mode`中知道浏览器会打断我们代码的执行，再根据上面的代码，你一定会发现有问题`在完成渲染整个树之前，浏览器可能会中断我们的工作。 在这种情况下，用户将看到不完整的UI。`
 

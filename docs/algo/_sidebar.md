@@ -1,2 +1,5 @@
 - [选择排序](/algo/selection)
 - [插入排序](/algo/insert)
+- [冒泡排序](/algo/bubbling)
+- [归并排序](/algo/merge)
+- [快速排序](/algo/quick)

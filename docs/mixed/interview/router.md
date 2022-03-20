@@ -61,11 +61,11 @@ class router {
   watchHash() {
     let hash: String = window.location.hash.slice(1)
     this.hashStr = hash
-    console.log(hashStr)
-    if (hashStr) {
-      if (hashStr == 'luyou1') {
+    console.log(this.hashStr)
+    if (this.hashStr) {
+      if (this.hashStr == 'luyou1') {
         document.querySelector('#luyouid').innerHTML = 'luyou1'
-      } else if (hashStr == 'luyou2') {
+      } else if (this.hashStr == 'luyou2') {
         document.querySelector('#luyouid').innerHTML = 'luyou2'
       } else {
         document.querySelector('#luyouid').innerHTML = 'default'
@@ -117,6 +117,98 @@ window.addEventListener('replaceState', function(e) {
 window.addEventListener('pushState', function(e) {
   console.log('THEY DID IT AGAIN! pushState')
 })
+```
+
+## vue-router 源码
+
+1. 实现了用 Router 类去管理路由
+
+```javascript
+// router/index.js
+import {ref,inject} from 'vue'
+import RouterLink from './RouterLink.vue'
+import RouterView from './RouterView.vue'
+
+const ROUTER_KEY = '__router__'
+
+// 创建Router对象
+function createRouter(options){
+    return new Router(options)
+}
+
+// 在子组件中获取路由实例
+function useRouter(){
+    return inject(ROUTER_KEY)
+}
+
+function createWebHashHistory(){
+    function bindEvents(fn){
+        window.addEventListener('hashchange',fn)
+    }
+    return {
+        bindEvents,
+        url:window.location.hash.slice(1) || '/'
+    }
+}
+
+class Router{
+    constructor(options){
+      	// 在创建Router实例之前，需要先调用createHash
+        this.history = options.history
+        this.routes = options.routes
+        this.current = ref(this.history.url)
+
+        this.history.bindEvents(()=>{
+            this.current.value = window.location.hash.slice(1)
+        })
+    }
+  	// 注册到vue实例上
+    install(app){
+        app.provide(ROUTER_KEY,this)
+      	app.component("router-link",RouterLink)
+      	app.component("router-view",RouterView)
+    }
+}
+
+export {createRouter,createWebHashHistory,useRouter}
+```
+
+2. 创建`RouterLink`和`RouterView`
+
+```vue
+<template>
+    <component :is="comp"></component>
+</template>
+<script setup>
+
+import {computed } from 'vue'
+import { useRouter } from '../router/index'
+
+let router = useRouter()
+
+const comp = computed(()=>{
+    const route = router.routes.find(
+        (route) => route.path === router.current.value
+    )
+    return route?route.component : null
+})
+</script>
+```
+
+```vue
+<template>
+    <a :href="'#'+props.to">
+        <slot />
+    </a>
+</template>
+
+<script setup>
+import {defineProps} from 'vue'
+let props = defineProps({
+    to:{type:String,required:true}
+})
+
+</script>
 ```
 
 参考：

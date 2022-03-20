@@ -2,12 +2,11 @@
 
 * [算法](/algo/README.md)
 
-* [react](/react/README.md)
+* [webgl](/webgl/README.md)
 
 * 大杂烩
 	* [webpack](/mixed/webpack/README.md)
 	* [typescript](/mixed/typescript/README.md)
-	* [面试](/mixed/interview/README.md)
-	* [浏览器](/mixed/browser/README.md)
+	* [前端精华](/mixed/interview/README.md)
 
 

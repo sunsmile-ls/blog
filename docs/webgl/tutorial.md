@@ -56,29 +56,30 @@ webgl 是在网页上绘制和渲染三维图形的技术，可以让用户与�
 
 ```js
 // 3. 在js中获取canvas画布
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas')
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
 
 // 4. 使用canvas 获取webgl 绘图上下文
-const gl = canvas.getContext('webgl');
+const gl = canvas.getContext('webgl')
 
 // 5. 获取定点着色器和片源着色器文本
-const vsSource = document.getElementById('vertexShader').innerText;
-const fsSource = document.getElementById('fragmentShader').innerText;
+const vsSource = document.getElementById('vertexShader').innerText
+const fsSource = document.getElementById('fragmentShader').innerText
 
 // 6. 初始化着色器
-initShaders(gl, vsSource, fsSource);
+initShaders(gl, vsSource, fsSource)
 
 // 7. 指定将要用来清空绘图区的颜色
-gl.clearColor(0, 0, 0, 1);
+//    一旦设置了背景色，就会驻留在内存中，再次使用没有必要再指定一次颜色
+gl.clearColor(0, 0, 0, 1)
 
 // 8. 使用之前指定的颜色，清空绘图区
-gl.clear(gl.COLOR_BUFFER_BIT);
+gl.clear(gl.COLOR_BUFFER_BIT)
 
 // 9. 绘制顶点
-gl.drawArrays(gl.POINTS, 0, 1);
+gl.drawArrays(gl.POINTS, 0, 1)
 ```
 
 #### 盲点剖析
@@ -98,33 +99,34 @@ gl.drawArrays(gl.POINTS, 0, 1);
 ```js
 function initShaders(gl, vsSource, fsSource) {
 	//创建程序对象
-	const program = gl.createProgram();
+	const program = gl.createProgram()
 	//建立着色对象
 	// 手绘板里用于接收触控笔信号的零部件，二者可以分工合作，
 	// 把触控笔的压感（js信号）解析为计算机语言(GLSL ES)，然后让计算机(浏览器的webgl 渲染引擎)识别显示
-	const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
-	const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+	const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource)
+	const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource)
 	//把顶点着色对象装进程序对象中
-	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, vertexShader)
 	//把片元着色对象装进程序对象中
-	gl.attachShader(program, fragmentShader);
+	gl.attachShader(program, fragmentShader)
 	//连接webgl上下文对象和程序对象
-	gl.linkProgram(program);
+	gl.linkProgram(program)
 	//启动程序对象
-	gl.useProgram(program);
+	gl.useProgram(program)
 	//将程序对象挂到上下文对象上
-	gl.program = program;
-	return true;
+	gl.program = program
+	return true
 }
 
 function loadShader(gl, type, source) {
 	//根据着色类型，建立着色器对象
-	const shader = gl.createShader(type);
+	const shader = gl.createShader(type)
 	//将着色器源文件传入着色器对象中
-	gl.shaderSource(shader, source);
+	gl.shaderSource(shader, source)
 	//编译着色器对象
-	gl.compileShader(shader);
+	gl.compileShader(shader)
 	//返回着色器对象
-	return shader;
+	return shader
 }
 ```
+

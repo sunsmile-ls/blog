@@ -27,7 +27,7 @@
 2. 在 js 中获取片元着色器暴露出的 uniform 变量
 
 ```js
-const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor')
 ```
 
 `getUniformLocation()` 方法就是用于获取片元着色器暴露出的 uniform 变量的，其第一个参数是程序对象，第二个参数是变量名。这里的参数结构和获取 attribute 变量的 `getAttributeLocation()` 方法是一样的。
@@ -35,7 +35,7 @@ const u_FragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
 3. 修改 uniform 变量
 
 ```js
-gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0);
+gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0)
 ```
 
 #### 扩展 uniform4fv() 方法
@@ -48,10 +48,10 @@ gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0);
 在上面呢的案例中，我们可以知道，在修改 uniform 变量的时候，这两种写法是一样的：
 
 ```js
-gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0);
+gl.uniform4f(u_FragColor, 1.0, 1.0, 0.0, 1.0)
 //等同于
-const color = new Float32Array([1.0, 1.0, 0.0, 1.0]);
-gl.uniform4fv(u_FragColor, color);
+const color = new Float32Array([1.0, 1.0, 0.0, 1.0])
+gl.uniform4fv(u_FragColor, color)
 ```
 
 uniform4f() 和 uniform4fv() 也有着自己的同族方法，其中的 4 可以变成 1|2|3。
@@ -99,26 +99,26 @@ uniform4f() 和 uniform4fv() 也有着自己的同族方法，其中的 4 可以
 刷底色的时候给一个透明的底色，这样才能看见 canvas 的 css 背景
 
 ```js
-gl.clearColor(0, 0, 0, 0);
+gl.clearColor(0, 0, 0, 0)
 ```
 
 接下来图形的透明度作为变量：
 
 ```js
-const arr = new Float32Array([0.87, 0.91, 1, a]);
-gl.uniform4fv(u_FragColor, arr);
+const arr = new Float32Array([0.87, 0.91, 1, a])
+gl.uniform4fv(u_FragColor, arr)
 ```
 
 **开启片元的颜色合成功能**
 
 ```js
-gl.enable(gl.BLEND);
+gl.enable(gl.BLEND)
 ```
 
 **设置片元的合成方式**
 
 ```js
-gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
 ```
 
 ## 补间动画
@@ -218,7 +218,7 @@ export default class Track {
 - keyMap 关键帧集合，结构如下：
 
 ```js
-[
+;[
 	[
 		'对象属性1',
 		[
@@ -226,7 +226,7 @@ export default class Track {
 			[时间2, 属性值], //关键帧
 		],
 	],
-];
+]
 ```
 
 方法
@@ -248,19 +248,19 @@ export default class Track {
 ```js
 function getValBetweenFms(time: number, fms: [number, number][], last: number): number {
 	for (let i = 0; i < last; i++) {
-		const fm1 = fms[i];
-		const fm2 = fms[i + 1];
+		const fm1 = fms[i]
+		const fm2 = fms[i + 1]
 		if (time >= fm1[0] && time <= fm2[0]) {
 			const delta = {
 				x: fm2[0] - fm1[0],
 				y: fm2[1] - fm1[1],
-			};
-			const k = delta.y / delta.x;
-			const b = fm1[1] - fm1[0] * k;
-			return k * time + b;
+			}
+			const k = delta.y / delta.x
+			const b = fm1[1] - fm1[0] * k
+			return k * time + b
 		}
 	}
-	return 0;
+	return 0
 }
 ```
 
@@ -282,17 +282,17 @@ function getValBetweenFms(time: number, fms: [number, number][], last: number): 
 1. 建立动画相关的对象
 
 ```js
-const compose = new Compose();
-const stars = [];
+const compose = new Compose()
+const stars = []
 canvas.addEventListener('click', function (event) {
-	const { x, y } = getPosByMouse(event, canvas);
-	const a = 1;
-	const s = Math.random() * 5 + 2;
-	const obj = { x, y, s, a };
-	stars.push(obj);
+	const { x, y } = getPosByMouse(event, canvas)
+	const a = 1
+	const s = Math.random() * 5 + 2
+	const obj = { x, y, s, a }
+	stars.push(obj)
 
-	const track = new Track(obj);
-	track.start = new Date();
+	const track = new Track(obj)
+	track.start = new Date()
 	track.keyMap = new Map([
 		[
 			'a',
@@ -302,11 +302,11 @@ canvas.addEventListener('click', function (event) {
 				[1500, a],
 			],
 		],
-	]);
-	track.timeLen = 2000;
-	track.loop = true;
-	compose.add(track);
-});
+	])
+	track.timeLen = 2000
+	track.loop = true
+	compose.add(track)
+})
 ```
 
 - compose 合成对象的实例化
@@ -317,24 +317,24 @@ canvas.addEventListener('click', function (event) {
 
 ```js
 function ani() {
-	compose.update(new Date().getTime());
-	render();
-	requestAnimationFrame(ani);
+	compose.update(new Date().getTime())
+	render()
+	requestAnimationFrame(ani)
 }
-ani();
+ani()
 ```
 
 渲染方法如下：
 
 ```js
 function render() {
-	gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.clear(gl.COLOR_BUFFER_BIT)
 	stars.forEach(({ x, y, s, a }) => {
-		gl.vertexAttrib2f(a_Position, x, y);
-		gl.vertexAttrib1f(a_PointSize, s);
-		gl.uniform4fv(u_FragColor, new Float32Array([0.87, 0.92, 1, a]));
-		gl.drawArrays(gl.POINTS, 0, 1);
-	});
+		gl.vertexAttrib2f(a_Position, x, y)
+		gl.vertexAttrib1f(a_PointSize, s)
+		gl.uniform4fv(u_FragColor, new Float32Array([0.87, 0.92, 1, a]))
+		gl.drawArrays(gl.POINTS, 0, 1)
+	})
 }
 ```
 
